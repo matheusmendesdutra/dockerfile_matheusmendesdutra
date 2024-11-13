@@ -1,23 +1,17 @@
-# Etapa 1: Usar a imagem base do Node.js com Alpine para ser mais leve
+
 FROM node:14-alpine
 
-# Etapa 2: Definir o diretório de trabalho no container
 WORKDIR /app
 
-# Etapa 3: Copiar o package.json e package-lock.json para o diretório de trabalho
 COPY package*.json ./
 
-# Etapa 4: Instalar as dependências do React
 RUN npm install
 
-# Etapa 5: Copiar o restante dos arquivos da aplicação para o container
 COPY . .
 
-# Etapa 6: Construir a aplicação React para produção
 RUN npm run build
 
-# Etapa 7: Expor a porta 3000 (padrão do React)
 EXPOSE 3000
 
-# Etapa 8: Comando para rodar a aplicação React
 CMD ["npm", "start"]
+
